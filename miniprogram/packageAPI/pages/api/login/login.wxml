@@ -3,13 +3,31 @@
 <import src="../../../../common/foot_en.wxml" />
 
 <view class="container page">
-  <template is="head" data="{{title: 'Login'}}"/>
-
   <view class="page-body">
     <view class="page-section">
       <block wx:if="{{hasLogin === true}}">
         <text class="page-body-title">{{t['login0']}}</text>
         <text class="page-body-text">Code:{{code}}</text>
+        <button open-type="getPhoneNumber" bindtap="clickGetPhoneNumber" bindgetphonenumber="handleGetPhoneNumber">Get Phone Number</button>
+        <text class="page-body-text">PhoneNumber:{{phoneNumber}}</text>
+        <button open-type="getEmailAddress" bindtap="clickGetEmailAddress" bindgetemailaddress="handleGetEmailAddress">Get Email</button>
+        <text class="page-body-text">Email:{{emailAddress}}</text>
+        <view class="settingItem">
+          <text class="caption">Profile Picture</text>
+          <view class="avatar-empty"></view>
+          <button class="headerButton" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+               <image src="{{userHead}}" class="userHead" mode="aspectFill" />
+          </button>
+        </view>
+        <view class="settingItem">
+              <text class="caption">Nickname</text>
+              <input
+                value="{{nickName}}"
+                type="nickname"
+                class="value"
+                placeholder="Please enter a nickname"
+                bindchange="nickNameChange" />
+        </view>
       </block>
       <block wx:if="{{hasLogin === false}}">
         <button class="page-body-button" type="primary" bindtap="login">{{t['login3']}}</button>

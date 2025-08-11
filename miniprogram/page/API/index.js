@@ -14,6 +14,12 @@ Page({
       open: false,
       pages: [
         {
+          name: i18n['Initiate payment'],
+          url: 'request-payment/request-payment'
+        }, {
+          name: i18n['Subscription message'],
+          url: 'subscribe-message/subscribe-message'
+        }, {
           name: i18n['Data report'],
           url: 'analysis/analysis'
         }, {

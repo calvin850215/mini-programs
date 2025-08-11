@@ -22,7 +22,8 @@
 		"showShadowRootInWxmlPanel": false,
 		"packNpmRelationList": [],
 		"ignoreUploadUnusedFiles": true,
-		"condition": false
+		"condition": false,
+		"scriptsEnable": false
 	},
 	"compileType": "miniprogram",
 	"createTime": 1679652660742,
@@ -32,7 +33,7 @@
 		"ignore": [],
 		"include": []
 	},
-	"projectname": "main-demo",
+	"projectname": "API%20demo",
 	"editorSetting": {
 		"tabIndent": "insertSpaces",
 		"tabSize": 2
@@ -68,6 +69,7 @@
 			}
 		]
 	},
+	"TCSASappid": "mpgmv9l06ptin91f",
 	"condition": {
 		"plugin": {
 			"current": -1,

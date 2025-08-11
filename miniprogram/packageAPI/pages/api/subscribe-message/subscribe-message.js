@@ -13,17 +13,34 @@ Page({
   // Request subscription
   requestSubscribeMessage() {
     const self = this
+    const tmplIds = ['mti_OFrfsIuDZjzxCaCNGCAMJAFQzDsaTTrAHoolLhz']
     wx.requestSubscribeMessage({
-      tmplIds: ['y1bXHAg_oDuvrQ3pHgcODcMPl-2hZHenWugsqdB2CXY'],
-      success(res) {
-        console.log(res)
-        if (res.errMsg === 'requestSubscribeMessage:ok') {
-          self.subscribeMessageSend()
-        }
-      },
-      complete(res) {
-        console.log(res)
-      }
+          tmplIds: tmplIds,
+          success: (res) => {
+              console.log('wx.requestSubscribeMessage===success', res)
+              const keysWithAccept = Object.entries(res)
+              .filter(([key, value]) => value === "accept")
+              .map(([key]) => key);
+              if (keysWithAccept.length > 0) {
+                    // Send subscription message
+                    this.orderSubscribe(keysWithAccept)
+              } else {
+                    wx.showModal({
+                        title: 'No available message templates',
+                        confirmText: 'Confirm',
+                        showCancel: false
+                    })
+              }
+          },
+          fail: (res) => {
+              console.log('wx.requestSubscribeMessage===fail', res)
+              wx.showModal({
+                    title: 'wx.requestSubscribeMessage fail',
+                    confirmText: 'Confirm',
+                    content: `${res.errMsg}【${res.errCode}】`,
+                    showCancel: false
+              })
+          }
     })
   },
 

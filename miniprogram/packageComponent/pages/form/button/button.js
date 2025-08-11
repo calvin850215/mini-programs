@@ -1,8 +1,8 @@
 import { i18n, lang } from '../../../../i18n/lang'
 import { log } from '../../../../util/util'
 
-const APPID = 'mp45991maeap3uf5'
-const BASEURL = 'https://tcmppplus.woyaojianfei.club'
+const APPID = 'mpgmv9l06ptin91f'
+const BASEURL = 'https://app.calvinapp.org'
 const types = ['default', 'primary', 'warn']
 const pageObject = {
   data: {
@@ -65,7 +65,7 @@ const pageObject = {
     if (code) {
       //发起网络请求
       wx.request({
-        url: `${BASEURL}/getUserPhoneDirect`,
+        url: `${BASEURL}/getUserPhoneNumber`,
         method: "POST",
         data: {
           appid: APPID,
@@ -75,7 +75,7 @@ const pageObject = {
           this.setData({
             isPhoneLoading: false
           })
-          console.log('getPhoneNumber request success===', res)
+          console.log('getUserPhoneNumber request success===', res)
           const { code = -1, data = {}, msg } = res?.data || {};
           if (code === 200) { // 换取手机号信息成功
             wx.showModal({
@@ -85,13 +85,13 @@ const pageObject = {
               showCancel: false
             })
           } else {
-            const msg = res?.data?.data?.msg || res?.data || '/getPhoneNumber request fail'
+            const msg = res?.data?.data?.msg || res?.data || '/getUserPhoneNumber request fail'
             const errcode = res?.data?.data?.errcode || code
-            console.log('/getPhoneNumber request fail', res)
+            console.log('/getUserPhoneNumber request fail', res)
             wx.showModal({
               title: 'Failed to retrieve phone number',
               confirmText: i18n['toast6'],
-              content: `/getPhoneNumber fail:${msg}[code:${errcode}]`,
+              content: `/getUserPhoneNumber fail:${msg}[code:${errcode}]`,
               showCancel: false
             })
           }

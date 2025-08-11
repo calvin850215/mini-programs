@@ -19,7 +19,7 @@ export default {
   more: '更多',
   paragraph2: '以下将演示小程序接口能力，具体属性参数详见',
   OpenInterface: '开放接口',
-  'login': '登录',
+  'login': '登录和用户信息',
   'Initiate payment': '发起支付',
   'Data report': '数据上报',
   'Picture sharing': '图片分享',
