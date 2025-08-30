@@ -2,7 +2,7 @@ import { i18n, lang } from '../../../../i18n/lang'
 import { log } from '../../../../util/util'
 
 const APPID = 'mpgmv9l06ptin91f'
-const BASEURL = 'https://app.calvinapp.org'
+const BASEURL = 'https://siu.appao.com.org/user'
 const types = ['default', 'primary', 'warn']
 const pageObject = {
   data: {
