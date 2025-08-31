@@ -1,6 +1,6 @@
 import { i18n,lang } from '../../../../i18n/lang'
 
-const BASEURL = 'https://siu.appao.com/user'
+const BASEURL = 'https://siu.appao.com'
 const APPID = 'mpgmv9l06ptin91f'
 
 Page({
@@ -22,7 +22,7 @@ Page({
         console.log('wx.login success===', res)
         if (res.code) {
           wx.request({
-            url: `${BASEURL}/getUserInfo`,
+            url: `${BASEURL}/minibackend/getUserInfo`,
             method: "POST",
             data: {
               appid: APPID,
