@@ -1,5 +1,5 @@
 const app = getApp()
-const BASEURL = 'https://siu.appao.com'
+const BASEURL = 'https://miniapp.appao.com'
 const APPID = 'mpgmv9l06ptin91f'
 
 import { i18n,lang } from '../../../../i18n/lang'
@@ -40,6 +40,7 @@ Page({
   },
   login: function () {
     wx.showLoading()
+    // step 1: get jscode
     wx.login({
       success: (res) => {
         wx.hideLoading()
@@ -54,6 +55,34 @@ Page({
               title: 'Logged in successfully',
               icon: 'success',
               duration: 500
+          })
+
+          // NOTE: step 2 and 3 are only required when the current user need to interact with other host app users
+          // step 2: get openid from server and bind openid with host app userid
+          wx.request({
+            url: `${BASEURL}/minibackend/getOpenId`,
+            method: "POST",
+            data: {
+              appId: APPID,
+              jscode: this.jscode
+            },
+            success: (res) => {
+              console.log('getOpenId request success===', res)
+              const { data = {} } = res || {};
+              // check data.data.openId is not null
+              if (data.data.openId) {
+                // step 3: bind openid with host app userid
+                wx.invokeNativePlugin({
+                  api_name: 'bindOpenId',
+                  data: {
+                    jscode: this.jscode,
+                  },
+                })
+              }
+            },
+            fail: (err) => {
+              console.log('getOpenId request fail===', err)
+            }
           })
         } else {
           console.log('wx.login does not return code. res:', res)

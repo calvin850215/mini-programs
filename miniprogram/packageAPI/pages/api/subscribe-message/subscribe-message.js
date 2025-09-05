@@ -1,6 +1,6 @@
 import { i18n,lang } from '../../../../i18n/lang'
 
-const BASEURL = 'https://siu.appao.com'
+const BASEURL = 'https://miniapp.appao.com'
 const APPID = 'mpgmv9l06ptin91f'
 
 Page({
@@ -31,7 +31,7 @@ Page({
             success: (res) => {
               wx.hideLoading()
               console.log('wx.request success===', res)
-              const tmplIds = ['mti_OFrfsIuDZjzxCaCNGCAMJAFQzDsaTTrAHoolLhz']
+              const tmplIds = ['mti_eIvkmaWGdBHsBxjOiWUuQHiHzDEeRCnBYyuyIgr', 'mti_eIvkmaWGdBHsBxjOiWUuQHiHzDEeRCnBYyuyIgr']
               wx.requestSubscribeMessage({
                 tmplIds: tmplIds,
                 success: (res) => {
