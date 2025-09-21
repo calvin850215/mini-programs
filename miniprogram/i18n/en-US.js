@@ -19,6 +19,9 @@ export default {
   paragraph2:
     'The following will demonstrate the capabilities of Mini Program interfaces. See specific attribute parameters in the',
   OpenInterface: 'Open Interfaces',
+  'Start Chat': 'Start Chat',
+  'Friend OpenId': 'Friend OpenId',
+  'Send Message': 'Send Message',
   'login': 'Login',
   'Initiate payment': 'Initiate Payment',
   'Data report': 'Data Reporting',

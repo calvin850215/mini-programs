@@ -8,9 +8,9 @@
       <block wx:if="{{hasLogin === true}}">
         <text class="page-body-title">{{t['login0']}}</text>
         <text class="page-body-text">Code:{{code}}</text>
-        <button open-type="getPhoneNumber" bindtap="clickGetPhoneNumber" bindgetphonenumber="handleGetPhoneNumber">Get Phone Number</button>
+        <button type="primary" open-type="getPhoneNumber" bindtap="clickGetPhoneNumber" bindgetphonenumber="handleGetPhoneNumber">Get Phone Number</button>
         <text class="page-body-text">PhoneNumber:{{phoneNumber}}</text>
-        <button open-type="getEmailAddress" bindtap="clickGetEmailAddress" bindgetemailaddress="handleGetEmailAddress">Get Email</button>
+        <button type="primary" open-type="getEmailAddress" bindtap="clickGetEmailAddress" bindgetemailaddress="handleGetEmailAddress">Get Email</button>
         <text class="page-body-text">Email:{{emailAddress}}</text>
         <view class="settingItem">
           <text class="caption">Profile Picture</text>

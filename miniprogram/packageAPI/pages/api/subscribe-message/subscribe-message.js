@@ -31,7 +31,7 @@ Page({
             success: (res) => {
               wx.hideLoading()
               console.log('wx.request success===', res)
-              const tmplIds = ['mti_eIvkmaWGdBHsBxjOiWUuQHiHzDEeRCnBYyuyIgr', 'mti_eIvkmaWGdBHsBxjOiWUuQHiHzDEeRCnBYyuyIgr']
+              const tmplIds = ['mti_eIvkmaWGdBHsBxjOiWUuQHiHzDEeRCnBYyuyIgr', 'mti_kFnHRskhUVRBsTvVegrHTJBdIcAlhgxiNfhjsxE']
               wx.requestSubscribeMessage({
                 tmplIds: tmplIds,
                 success: (res) => {

@@ -32,6 +32,9 @@ Page({
           name: i18n['login'],
           url: 'login/login'
         }, {
+          name: i18n['Start Chat'],
+          url: 'start-chat/start-chat'
+        }, {
           name: i18n['Forward'],
           url: 'share/share'
         }, {

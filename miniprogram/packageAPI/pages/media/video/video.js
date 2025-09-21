@@ -22,7 +22,7 @@ Page({
     sourceTypeIndex: 2,
     cameraIndex: 1,
     durationIndex: 59,
-    src: '',
+    src: 'https://www.w3schools.com/tags/mov_bbb.mp4',
     videoContext: null,
     saveVideoToPhotosAlbumRes: '',
     openVideoEditorRes: '',
