@@ -58,6 +58,7 @@
       "root": "packageAPI",
       "pages": [
         "pages/api/login/login",
+        "pages/api/request-iap/request-iap",
         "pages/api/start-chat/start-chat",
         "pages/api/request-payment/request-payment",
         "pages/api/analysis/analysis",

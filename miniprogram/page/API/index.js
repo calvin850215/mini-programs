@@ -19,6 +19,9 @@ Page({
         }, {
           name: i18n['Subscription message'],
           url: 'subscribe-message/subscribe-message'
+        },{
+          name: i18n['IAP payment'],
+          url: 'request-iap/request-iap'
         }, {
           name: i18n['Data report'],
           url: 'analysis/analysis'

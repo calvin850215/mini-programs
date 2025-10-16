@@ -77,28 +77,25 @@ Page({
                   data: {
                     openId: data.data.openId,
                   },
-                  complete(res) {
-                    console.log('===complete[invokeNativePlugin bindOpenId]===', res);
+                  success: (res) => {
+                    console.log('===success[invokeNativePlugin bindOpenId]===', res);
                     // delay 1 second
                     setTimeout(() => {
                       wx.showToast({ title: "bindOpenId:complete res:" + res });
                     }, 1000);
                   },
-                  success: (res) => {
-                    console.log('===success[invokeNativePlugin bindOpenId]===', res);
-                    setTimeout(() => {
-                      wx.showToast({ title: "bindOpenId:ok res:" + res });
-                    }, 1000);
-                  },
                   fail: (err) => {
-                    console.log('===err[invokeNativePlugin bindOpenId]=== err:', err, ", res:" + res);
+                    console.log('===err[invokeNativePlugin bindOpenId]=== err:', err);
                     const { errMsg = "" } = err;
                     setTimeout(() => {
                       wx.showToast({
-                      title: `${errMsg} res:${res}`,
+                      title: `${errMsg}`,
                         icon: "error"
                       });
                     }, 1000);
+                  },
+                  complete(res) {
+                    console.log('===complete[invokeNativePlugin bindOpenId]===', res);
                   },
                 })
               }

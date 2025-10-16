@@ -1,0 +1,18 @@
+<import src="../../../../common/head.wxml" />
+<import src="../../../../common/foot.wxml" />
+<import src="../../../../common/foot_en.wxml" />
+<view class="container page">
+  <template is="head" data="{{title: 'Request IAP'}}" />
+  <view class="page-body">
+    <view class="page-section">
+      <view class="weui-cells__title">Consumable Product ID</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" bindinput="bindConsumableProductID" focus placeholder="{{testConsumableProductID}}" />
+        </view>
+      </view>
+    </view>
+    <button type="primary" bindtap="checkConsumableProduct">Check Consumable</button>
+    <button type="primary" bindtap="purchaseConsumableProduct">Purchase Consumable</button>
+  </view>
+</view>

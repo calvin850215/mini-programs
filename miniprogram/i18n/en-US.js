@@ -1569,5 +1569,6 @@ export default {
   vtabs14: '2020 China University Computer Competition',
   vtabs15: 'WeChat Mini Program Application Development Competition',
   '昵称': 'Nickname',
-  '请输入昵称': 'Please enter a nickname'
+  '请输入昵称': 'Please enter a nickname',
+  'IAP payment': 'IAP Payment'
 };

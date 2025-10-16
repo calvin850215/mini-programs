@@ -26,21 +26,17 @@ Page({
       data: {
         openId: friendOpenId
       },
-      complete(res) {
-        console.log('===complete[invokeNativePlugin startChat]===', res);
-      },
       success: (res) => {
         console.log('===success[invokeNativePlugin startChat]===', res);
       },
       fail: (err) => {
         console.log('===err[invokeNativePlugin startChat]===', err);
       },
-      progress: (res) => {
-        console.log('===progress[invokeNativePlugin startChat]===', res);
-      }
+      complete(res) {
+        console.log('===complete[invokeNativePlugin startChat]===', res);
+      },
     })
   },
-
 
   onLoad() {
     this.setData({
