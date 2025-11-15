@@ -9,23 +9,23 @@ Page({
 
   data: {
     theme: 'light',
-    openID: 'o2fde6c3b48a17567zJjbrv91064',
-    testConsumableProductID: 'zcoin_100_consumable_100coins', 
+    openId: 'o2fde6c3b48a17567zJjbrv91064',
+    testConsumableProductId: 'zcoin_100_consumable_100coins', 
   },
 
-  bindConsumableProductID(e) {
+  bindConsumableProductId(e) {
     this.setData({
-      testConsumableProductID: e.detail.value
+      testConsumableProductId: e.detail.value
     })
   },
 
   checkConsumableProduct() {
-    const consumableProductID = this.data.testConsumableProductID;
-    console.log("checkConsumableProduct id:", consumableProductID)
+    const consumableProductId = this.data.testConsumableProductId;
+    console.log("checkConsumableProduct id:", consumableProductId)
     wx.invokeNativePlugin({
       api_name: 'isIAPProductAvailable',
       data: {
-        productID: consumableProductID,
+        productId: consumableProductId,
         type: 'consumable',
       },
       success: (res) => {
@@ -44,15 +44,15 @@ Page({
   },
 
   purchaseConsumableProduct() {
-    const consumableProductID = this.data.testConsumableProductID;
-    const openID = this.data.openID;
-    console.log("consumableProductID:", consumableProductID)
+    const consumableProductId = this.data.testConsumableProductId;
+    const openId = this.data.openId;
+    console.log("consumableProductId:", consumableProductId)
     wx.invokeNativePlugin({
       api_name: 'requestIAP',
       data: {
-        productID: consumableProductID,
+        productId: consumableProductId,
         type: 'consumable',
-        openID: openID
+        openId: openId
       },
       success: (res) => {
         console.log('===success[invokeNativePlugin requestIAP consumable]===', res);

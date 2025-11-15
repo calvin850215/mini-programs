@@ -8,7 +8,7 @@
       <view class="weui-cells__title">Consumable Product ID</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
-          <input class="weui-input" bindinput="bindConsumableProductID" focus placeholder="{{testConsumableProductID}}" />
+          <input class="weui-input" bindinput="bindConsumableProductId" focus placeholder="{{testConsumableProductId}}" />
         </view>
       </view>
     </view>
