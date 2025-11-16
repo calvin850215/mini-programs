@@ -1535,5 +1535,11 @@ export default {
   vtabs15: '微信小程序应用开发赛',
   '昵称': '昵称',
   '请输入昵称': '请输入昵称',
-  'IAP payment': 'IAP支付'
+  'IAP payment': 'IAP支付',
+  'eventUpdateDescription': '活动更新通知',
+  'eventTitle': '活动标题',
+  'eventSubtitle': '活动描述',
+  'openPath': '打开路径',
+  'openParams': '打开参数',
+  'appVersionType': '版本类型(0: 开发, 1: 预览, 2: 审核, 3: 线上)'
 };

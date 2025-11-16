@@ -1570,5 +1570,11 @@ export default {
   vtabs15: 'WeChat Mini Program Application Development Competition',
   '昵称': 'Nickname',
   '请输入昵称': 'Please enter a nickname',
-  'IAP payment': 'IAP Payment'
+  'IAP payment': 'IAP Payment',
+  'eventUpdateDescription': 'Event Update Notification',
+  'eventTitle': 'Event Title',
+  'eventSubtitle': 'Event Subtitle',
+  'openPath': 'Open Path',
+  'openParams': 'Open Params',
+  'appVersionType': 'Type(0: development, 1: preview, 2: audit, 3: online)'
 };

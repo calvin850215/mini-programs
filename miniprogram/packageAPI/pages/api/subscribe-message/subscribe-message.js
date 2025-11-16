@@ -11,9 +11,39 @@ Page({
   data: {
     t: i18n,
     lang,
-    theme: 'light'
+    theme: 'light',
+    eventTitle: 'Play together',
+    eventSubtitle: 'The game is about to start, please join us!',
+    openPath: 'packageAPI/pages/api/subscribe-message/subscribe-message',
+    openParams: 'key1=value1',
+    appVersionType: 3
   },
 
+  bindEventTitleInput(e) {
+    this.setData({
+      eventTitle: e.detail.value
+    })
+  },
+  bindOpenSubtitleInput(e) {
+    this.setData({
+      eventSubtitle: e.detail.value
+    })
+  },
+  bindOpenPathInput(e) {
+    this.setData({
+      openPath: e.detail.value
+    })
+  },
+  bindOpenParamsInput(e) {
+    this.setData({
+      openParams: e.detail.value
+    })
+  },
+  bindAppVersionTypeInput(e) {
+    this.setData({
+      appVersionType: e.detail.value
+    })
+  },
   // Request subscription
   requestSubscribeMessage() {
     wx.showLoading()
@@ -22,50 +52,94 @@ Page({
         console.log('wx.login success===', res)
         if (res.code) {
           wx.request({
-            url: `${BASEURL}/minibackend/getUserInfo`,
+            url: `${BASEURL}/minibackend/getOpenId`,
             method: "POST",
             data: {
-              appid: APPID,
-              code: res.code
+              appId: APPID,
+              jscode: res.code
             },
             success: (res) => {
-              wx.hideLoading()
-              console.log('wx.request success===', res)
-              const tmplIds = ['mti_eIvkmaWGdBHsBxjOiWUuQHiHzDEeRCnBYyuyIgr', 'mti_kFnHRskhUVRBsTvVegrHTJBdIcAlhgxiNfhjsxE']
-              wx.requestSubscribeMessage({
-                tmplIds: tmplIds,
-                success: (res) => {
-                    console.log('wx.requestSubscribeMessage===success', res)
-                    const keysWithAccept = Object.entries(res)
-                    .filter(([key, value]) => value === "accept")
-                    .map(([key]) => key);
-                    if (keysWithAccept.length > 0) {
-                          // Send subscription message
-                          this.orderSubscribe(keysWithAccept)
-                    } else {
-                          wx.showModal({
-                              title: 'No available message templates',
-                              confirmText: 'Confirm',
-                              showCancel: false
-                          })
+              // const tmplIds = ['mti_eIvkmaWGdBHsBxjOiWUuQHiHzDEeRCnBYyuyIgr']
+              // wx.requestSubscribeMessage({
+              //   tmplIds: tmplIds,
+              //   success: (res) => {
+              //       console.log('wx.requestSubscribeMessage===success', res)
+              //       const keysWithAccept = Object.entries(res)
+              //       .filter(([key, value]) => value === "accept")
+              //       .map(([key]) => key);
+              //       if (keysWithAccept.length > 0) {
+              //             // Send subscription message
+              //             this.orderSubscribe(keysWithAccept)
+              //       } else {
+              //             wx.showModal({
+              //                 title: 'No available message templates',
+              //                 confirmText: 'Confirm',
+              //                 showCancel: false
+              //             })
+              //       }
+              //   },
+              //   fail: (res) => {
+              //       console.log('wx.requestSubscribeMessage===fail', res)
+              //       wx.showModal({
+              //             title: 'wx.requestSubscribeMessage fail',
+              //             confirmText: 'Confirm',
+              //             content: `${res.errMsg}【${res.errCode}】`,
+              //             showCancel: false
+              //       })
+              //   }
+              // })
+
+              console.log('wx.request getOpenId success===', res)
+              var openId = res.data.data.openId
+              wx.invokeNativePlugin({
+                api_name: 'authorizeNotification',
+                data: {
+                  validity: 'timebound',
+                  options: [
+                    {
+                      type: 'eventUpdate',
+                      description: i18n['eventUpdateDescription'],
                     }
+                  ]
                 },
-                fail: (res) => {
-                    console.log('wx.requestSubscribeMessage===fail', res)
-                    wx.showModal({
-                          title: 'wx.requestSubscribeMessage fail',
-                          confirmText: 'Confirm',
-                          content: `${res.errMsg}【${res.errCode}】`,
-                          showCancel: false
-                    })
-                }
+                success: (res) => {
+                  console.log('===success[invokeNativePlugin authorizeNotification]===', res);
+                  wx.request({
+                    url: `${BASEURL}/minibackend/sendActivity`,
+                    method: "POST",
+                    data: {
+                      appId: APPID,
+                      openId: openId,
+                      title: this.data.eventTitle,
+                      subtitle: this.data.eventSubtitle,
+                      imageUrl: 'https://picsum.photos/500',
+                      notificationToken: res.token,
+                      // env: "staging",
+                      openPath: this.data.openPath,
+                      openParams: this.data.openParams,
+                      appVersionType: this.data.appVersionType
+                    },
+                    success: (res) => {
+                      wx.hideLoading()
+                      console.log('wx.request sendActivity success==', res)
+                    },
+                    fail: (err) => {
+                      wx.hideLoading()
+                      console.log('wx.request sendActivity failed==', err)
+                    }
+                  })
+                },
+                fail: (err) => {
+                  wx.hideLoading()
+                  console.log('===err[invokeNativePlugin authorizeNotification]===', err);
+                },
               })
             },
             fail: (err) => {
               wx.hideLoading()
               console.log('wx.request fail', err)
               wx.showModal({
-                title: 'Login failed',
+                title: 'getOpenId failed',
                 confirmText: 'Confirm',
                 content: err.errMsg,
                 showCancel: false
