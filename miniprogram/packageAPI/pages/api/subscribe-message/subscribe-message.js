@@ -16,7 +16,13 @@ Page({
     eventSubtitle: 'The game is about to start, please join us!',
     openPath: 'packageAPI/pages/api/subscribe-message/subscribe-message',
     openParams: 'key1=value1',
-    appVersionType: 3
+    appVersionType: 3,
+    notificationType: 'onetime'
+  },
+  bindNotificationTypeInput(e) {
+    this.setData({
+      notificationType: e.detail.value
+    })
   },
 
   bindEventTitleInput(e) {
@@ -94,16 +100,23 @@ Page({
               wx.invokeNativePlugin({
                 api_name: 'authorizeNotification',
                 data: {
-                  validity: 'timebound',
                   options: [
                     {
+                      validity: this.data.notificationType,
                       type: 'eventUpdate',
                       description: i18n['eventUpdateDescription'],
+                    },
+                    {
+                      validity: this.data.notificationType,
+                      type: 'eventUpdate2',
+                      description: i18n['eventUpdateDescription2'],
                     }
                   ]
                 },
                 success: (res) => {
                   console.log('===success[invokeNativePlugin authorizeNotification]===', res);
+                  // take only first token
+                  var token = res.tokens[0].token;
                   wx.request({
                     url: `${BASEURL}/minibackend/sendActivity`,
                     method: "POST",
@@ -113,7 +126,7 @@ Page({
                       title: this.data.eventTitle,
                       subtitle: this.data.eventSubtitle,
                       imageUrl: 'https://picsum.photos/500',
-                      notificationToken: res.token,
+                      notificationToken: token,
                       // env: "staging",
                       openPath: this.data.openPath,
                       openParams: this.data.openParams,

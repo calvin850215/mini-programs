@@ -3,29 +3,31 @@
 <import src="../../../../common/foot_en.wxml" />
 
 <view class="container page">
-  <template is="head" data="{{title: t['subscribe0']}}"/>
-
   <view class="page-body">
     <view class="page-section">
+      <view class="weui-cells__title">{{t['notificationType']}}</view>
+      <view class="weui-cell weui-cells_after-title">
+          <input class="weui-input" bindinput="bindNotificationTypeInput" placeholder="{{notificationType}}" />
+      </view>
       <view class="weui-cells__title">{{t['eventTitle']}}</view>
       <view class="weui-cell weui-cells_after-title">
-          <input class="weui-input" bindinput="bindEventTitleInput" focus placeholder="{{eventTitle}}" />
+          <input class="weui-input" bindinput="bindEventTitleInput" placeholder="{{eventTitle}}" />
       </view>
       <view class="weui-cells__title">{{t['eventSubtitle']}}</view>
       <view class="weui-cell weui-cells_after-title">
-          <input class="weui-input" bindinput="bindOpenSubtitleInput" focus placeholder="{{eventSubtitle}}" />
+          <input class="weui-input" bindinput="bindOpenSubtitleInput" placeholder="{{eventSubtitle}}" />
       </view>
       <view class="weui-cells__title">{{t['openPath']}}</view>
       <view class="weui-cell weui-cells_after-title">
-          <input class="weui-input" bindinput="bindOpenPathInput" focus placeholder="{{openPath}}" />
+          <input class="weui-input" bindinput="bindOpenPathInput" placeholder="{{openPath}}" />
       </view>
       <view class="weui-cells__title">{{t['openParams']}}</view>
       <view class="weui-cell weui-cells_after-title">
-          <input class="weui-input" bindinput="bindOpenParamsInput" focus placeholder="{{openParams}}" />
+          <input class="weui-input" bindinput="bindOpenParamsInput" placeholder="{{openParams}}" />
       </view>
       <view class="weui-cells__title">{{t['appVersionType']}}</view>
       <view class="weui-cell weui-cells_after-title">
-          <input class="weui-input" bindinput="bindAppVersionTypeInput" focus placeholder="{{appVersionType}}" />
+          <input class="weui-input" bindinput="bindAppVersionTypeInput" placeholder="{{appVersionType}}" />
       </view>
       <view class="weui-cells__title">{{t['subscribe1']}}</view>
       <button class="page-body-button" type="primary" bindtap="requestSubscribeMessage">{{t['subscribe2']}}</button>
