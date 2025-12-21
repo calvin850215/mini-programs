@@ -3,7 +3,9 @@ Page({
   onShareAppMessage() {
     return {
       title: i18n['share-button1'],
-      path: 'packageAPI/pages/api/share-button/share-button'
+      path: 'packageAPI/pages/api/share-button/share-button',
+      imageUrl: 'https://picsum.photos/400',
+      query: 'key1=value1'
     }
   },
   handleTapShareButton() {
@@ -16,6 +18,9 @@ Page({
         showCancel: false
       })
     }
+  },
+  handleTapShareMenuButton() {
+    wx.showShareMenu({ showShareItems: ['zymix', 'qrcode'] })
   },
   onLoad() {
     wx.setNavigationBarTitle({

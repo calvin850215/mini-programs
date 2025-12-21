@@ -15,6 +15,14 @@
         </button>
         <label for="share-button"><image style="width: 27px; height: 27px" src="/image/share.png" /></label>
       </view>
+      <text class="page-body-title">
+        wx.showShareMenu
+      </text>
+      <view class="page-body-line">
+        <button bindtap="handleTapShareMenuButton" class="button-share" id="share-menu-button">
+        </button>
+        <label for="share-button"><image style="width: 27px; height: 27px" src="/image/share.png" /></label>
+      </view>
     </view>
   </view>
 
