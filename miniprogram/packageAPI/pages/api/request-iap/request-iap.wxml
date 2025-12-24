@@ -13,7 +13,29 @@
       </view>
     </view>
     <button type="primary" bindtap="checkConsumableProduct">{{t['Check Consumable']}}</button>
-    <button type="primary" bindtap="purchaseConsumableProduct">{{t['Purchase Consumable']}}</button>
     <button type="primary" bindtap="purchaseConsumableProductWithCallback">{{t['Purchase Consumable with Callback']}}</button>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">{{t['Merchant Order ID']}}</view>
+      <text class="weui-text">{{merchantOrderId}}</text>
+    </view>
+    <view class="page-section">
+      <view class="weui-cells__title">{{t['Transaction ID']}}</view>
+      <text class="weui-text">{{transactionId}}</text>
+    </view>
+    
+    <button type="primary" bindtap="queryTransactionId">{{t['Query Transaction ID']}}</button>
+    <button type="primary" bindtap="queryMerchantOrderId">{{t['Query Merchant Order ID']}}</button>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">{{t['Query Result']}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <scroll-view scroll-y style="max-height: 300px; width: 100%; word-break: break-all;">
+            <text selectable="true" user-select="true">{{queryResult || t['Query Result Placeholder']}}</text>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
