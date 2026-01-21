@@ -13,7 +13,7 @@ Page({
 
   data: {
     theme: 'light',
-    openId: 'oc24dee1668917551jyVXBk01729',
+    openId: '',
     testConsumableProductId: 'zcoin_100_consumable_100coins',
     merchantOrderId: '',
     transactionId: '',
@@ -114,10 +114,79 @@ Page({
     wx.showLoading()
 
     const consumableProductId = this.data.testConsumableProductId;
-    const openId = this.data.openId;
     console.log("purchaseConsumableProductWithCallback consumableProductId:", consumableProductId)
     
-    // First, create IAP order to get prepayId
+    // First, get openId via wx.login
+    wx.login({
+      success: (res) => {
+        console.log('wx.login success===', res)
+        if (res.code) {
+          wx.request({
+            url: `${BASEURL}/minibackend/getOpenId`,
+            method: "POST",
+            data: {
+              appId: APPID,
+              jscode: res.code
+            },
+            success: (res) => {
+              console.log('wx.request getOpenId success===', res)
+              const openId = res.data.data.openId
+              this.setData({ openId })
+              
+              // Bind openId with host app userid
+              wx.invokeNativePlugin({
+                api_name: 'bindOpenId',
+                data: {
+                  openId: openId,
+                },
+                success: (bindRes) => {
+                  console.log('===success[invokeNativePlugin bindOpenId]===', bindRes);
+                  // Then, create IAP order to get prepayId
+                  this.createIapOrderAndPurchase(consumableProductId, openId)
+                },
+                fail: (err) => {
+                  console.log('===err[invokeNativePlugin bindOpenId]=== err:', err);
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: 'Failed to bind openId',
+                    icon: 'none'
+                  });
+                },
+                complete(bindRes) {
+                  console.log('===complete[invokeNativePlugin bindOpenId]===', bindRes);
+                },
+              })
+            },
+            fail: (err) => {
+              wx.hideLoading()
+              console.log('wx.request getOpenId fail', err)
+              wx.showToast({
+                title: 'Failed to get openId',
+                icon: 'none'
+              });
+            },
+          })
+        } else {
+          wx.hideLoading()
+          console.log('wx.login does not return code', res)
+          wx.showToast({
+            title: 'Login failed',
+            icon: 'none'
+          });
+        }
+      },
+      fail: (err) => {
+        wx.hideLoading()
+        console.log('wx.login fail===', err)
+        wx.showToast({
+          title: 'Login failed',
+          icon: 'none'
+        });
+      }
+    })
+  },
+
+  createIapOrderAndPurchase(consumableProductId, openId) {
     var url = `${BASEURL}/minibackend/createIapOrder`;
     wx.request({
       url: url,

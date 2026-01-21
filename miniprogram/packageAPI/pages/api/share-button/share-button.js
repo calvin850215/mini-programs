@@ -20,7 +20,7 @@ Page({
     }
   },
   handleTapShareMenuButton() {
-    wx.showShareMenu({ showShareItems: ['zymix', 'qrcode'] })
+    wx.showShareMenu({ showShareItems: ['zymix', 'qrcode', 'wechatFriends', 'wechatMoment'] })
   },
   onLoad() {
     wx.setNavigationBarTitle({
