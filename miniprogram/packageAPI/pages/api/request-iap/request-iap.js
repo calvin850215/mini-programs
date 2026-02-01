@@ -50,6 +50,37 @@ Page({
     })
   },
 
+  getProductDetail() {
+    const productId = this.data.testConsumableProductId;
+    console.log("getProductDetail productId:", productId)
+    wx.invokeNativePlugin({
+      api_name: 'getIAPProductDetail',
+      data: {
+        productId: productId,
+        type: 'consumable',
+      },
+      success: (res) => {
+        console.log('===success[invokeNativePlugin getIAPProductDetail]===', res);
+        this.setData({ queryResult: JSON.stringify(res, null, 2) });
+        wx.showToast({
+          title: 'Get detail success',
+          icon: 'success'
+        });
+      },
+      fail: (err) => {
+        console.log('===err[invokeNativePlugin getIAPProductDetail]===', err);
+        this.setData({ queryResult: JSON.stringify(err, null, 2) });
+        wx.showToast({
+          title: 'Get detail failed',
+          icon: 'none'
+        });
+      },
+      complete(res) {
+        console.log('===complete[invokeNativePlugin getIAPProductDetail]===', res);
+      },
+    })
+  },
+
   queryTransactionId() {
     const transactionId = this.data.transactionId;
     if (!transactionId) {

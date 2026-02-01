@@ -13,6 +13,7 @@
       </view>
     </view>
     <button type="primary" bindtap="checkConsumableProduct">{{t['Check Consumable']}}</button>
+    <button type="primary" bindtap="getProductDetail">Get Product Detail</button>
     <button type="primary" bindtap="purchaseConsumableProductWithCallback">{{t['Purchase Consumable with Callback']}}</button>
     
     <view class="page-section">
